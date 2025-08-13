@@ -79,7 +79,7 @@ contract PayrollTreasury {
     function withdraw(uint256 amount) external onlyOwner {
         require(amount <= address(this).balance, "Insufficient balance");
 
-        (bool sent, ) = payable(i_owner).call{value: amount}("");
+        (bool sent, ) = payable(msg.sender).call{value: amount}("");
         require(sent, "Failed to send Ether");
 
         lastDayWithdraw = block.timestamp / 86400;
