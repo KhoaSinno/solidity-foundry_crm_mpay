@@ -12,7 +12,10 @@ contract PayrollTreasuryScript is Script {
     function run() public {
         vm.startBroadcast();
 
-        payrollTreasury = new PayrollTreasury();
+        payrollTreasury = new PayrollTreasury(
+            vm.envAddress("MANAGER_ADDRESS"),
+            vm.envUint("DAILY_LIMIT")
+        );
 
         vm.stopBroadcast();
     }
