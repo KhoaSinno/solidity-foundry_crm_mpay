@@ -7,9 +7,7 @@ import {PayrollTreasury} from "../src/PayrollTreasury.sol";
 contract PayrollTreasuryScript is Script {
     PayrollTreasury public payrollTreasury;
 
-    function setUp() public {}
-
-    function run() public {
+    function run() public returns (PayrollTreasury) {
         vm.startBroadcast();
 
         payrollTreasury = new PayrollTreasury(
@@ -18,5 +16,7 @@ contract PayrollTreasuryScript is Script {
         );
 
         vm.stopBroadcast();
+
+        return payrollTreasury;
     }
 }
