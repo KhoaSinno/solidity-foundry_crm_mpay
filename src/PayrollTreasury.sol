@@ -105,9 +105,10 @@ contract PayrollTreasury {
 
         require(address(this).balance >= due, "Insufficient balance");
 
-        // send funds
+        // send funds from vault of contract
         (bool sent, ) = empAddress.call{value: due}("");
         require(sent, "Failed to send Ether");
+
         employee.lastPaid = block.timestamp;
         employee.totalPaid += due;
 
